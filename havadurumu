@@ -1,1 +1,101 @@
+hava_durumu = {}
+
+def sehir_ekle(hava_durumu):
+    sehir = input("Şehir adını giriniz: ").capitalize()
+    try:
+        sicaklik = float(input(f"{sehir} için sıcaklık tahminini giriniz (°C): "))
+        hava_durumu[sehir] = sicaklik
+        print(f"{sehir} başarıyla eklendi.")
+    except ValueError:
+        print("Lütfen geçerli bir sıcaklık değeri girin.")
+
+def hava_durumu_sorgula(hava_durumu):
+    sehir = input("Sorgulamak istediğiniz şehir adını giriniz: ").capitalize()
+    if sehir in hava_durumu:
+        sicaklik = hava_durumu[sehir]
+        print(f"{sehir} için tahmin edilen sıcaklık: {sicaklik}°C")
+        tavsiye_ver(sicaklik)
+    else:
+        print(f"{sehir} için hava durumu bilgisi bulunamadı.")
+
+def tavsiye_ver(sicaklik):
+    if sicaklik < 0:
+        print("Tavsiye: Soğuk, sıkı giyinin.")
+    elif 0 <= sicaklik <= 15:
+        print("Tavsiye: Serin, mont almayı unutmayın.")
+    else:
+        print("Tavsiye: Hava güzel, rahat giyin.")
+
+def tum_sehirleri_listele(hava_durumu):
+    if not hava_durumu:
+        print("Henüz eklenmiş bir şehir yok.")
+    else:
+        print("Tahmin edilen sıcaklık bilgileri:")
+        for sehir, sicaklik in hava_durumu.items():
+            print(f"- {sehir}: {sicaklik}°C")
+
+# Ana döngü
+while True:
+    print("\nSeçenekler:")
+    print("1. Şehir ekle")
+    print("2. Hava durumu sorgula")
+    print("3. Tüm şehirleri listele")
+    print("4. Çıkış yap")
+    
+    try:
+        secim = int(input("Seçiminizi yapın (1-4): "))
+    except ValueError:
+        print("Lütfen 1 ile 4 arasında bir seçim yapın.")
+        continue
+    
+    if secim == 1:
+        sehir_ekle(hava_durumu)
+    elif secim == 2:
+        hava_durumu_sorgula(hava_durumu)
+    elif secim == 3:
+        tum_sehirleri_listele(hava_durumu)
+    elif secim == 4:
+        print("Programdan çıkılıyor...")
+        break
+    else:
+        print("Geçersiz seçim, lütfen tekrar deneyin.")
+Uygulamanın Özellikleri:
+Şehir Ekleme:
+
+Kullanıcı şehir adını ve sıcaklığı girer.
+Girilen veriler hava_durumu adlı bir sözlükte saklanır.
+Hava Durumu Sorgulama:
+
+Kullanıcı bir şehir adı girer.
+Şehir sözlükte varsa sıcaklık ve tavsiye verilir. Yoksa bilgilendirme yapılır.
+Tüm Şehirleri Listeleme:
+
+Kullanıcıya kayıtlı tüm şehirler ve sıcaklık tahminleri gösterilir.
+Sıcaklığa Göre Tavsiye:
+
+0°C altı: "Soğuk, sıkı giyinin."
+0°C-15°C: "Serin, mont almayı unutmayın."
+15°C üzeri: "Hava güzel, rahat giyin."
+Örnek Çalışma:
+plaintext
+Kodu kopyala
+Seçenekler:
+1. Şehir ekle
+2. Hava durumu sorgula
+3. Tüm şehirleri listele
+4. Çıkış yap
+Seçiminizi yapın (1-4): 1
+Şehir adını giriniz: Ankara
+Ankara için sıcaklık tahminini giriniz (°C): 10
+Ankara başarıyla eklendi.
+
+Seçiminizi yapın (1-4): 2
+Sorgulamak istediğiniz şehir adını giriniz: Ankara
+Ankara için tahmin edilen sıcaklık: 10°C
+Tavsiye: Serin, mont almayı unutmayın.
+
+
+
+
+
 
